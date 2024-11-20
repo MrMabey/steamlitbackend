@@ -14,6 +14,15 @@ st.set_page_config(
     layout="wide"
 )
 
+# Establishing a Google Sheets connection
+conn = st.experimental_connection("gsheets", type=GSheetsConnection)
+
+# Fetch existing vendors data
+existing_data = conn.read(worksheet="Sheet 1", usecols=list(range(6)), ttl=5)
+existing_data = existing_data.dropna(how="all")
+
+st.dataframe(existing_data)
+
 # Initialize Gemini client
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
@@ -345,11 +354,6 @@ def main():
         else:
             display_lesson_plan_view(st.session_state.current_lesson)
         
-st.title("Read Google Sheet as DataFrame")
-conn = st.connection("gsheets", type=GSheetsConnection)
-df = conn.read(worksheet="Sheet 1")
-
-st.dataframe(df)
     
 # Download button
         st.download_button(
