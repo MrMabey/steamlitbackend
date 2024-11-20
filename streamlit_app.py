@@ -42,20 +42,26 @@ except Exception as e:
 if st.session_state['authentication_status']:
     authenticator.logout()
     st.write(f'Welcome *{st.session_state["name"]}*')
-    st.title('Some content')
+   
+
+    # Establishing a Google Sheets connection
+    conn = st.connection("gsheets", type=GSheetsConnection)
+
+    # Fetch existing vendors data
+    existing_data = conn.read(worksheet="Sheet1", usecols=list(range(3)), ttl=5)
+    existing_data = existing_data.dropna(how="all")
+
+    st.dataframe(existing_data)
+
+
+
+
 elif st.session_state['authentication_status'] is False:
     st.error('Username/password is incorrect')
 elif st.session_state['authentication_status'] is None:
     st.warning('Please enter your username and password')
 
-# Establishing a Google Sheets connection
-conn = st.connection("gsheets", type=GSheetsConnection)
 
-# Fetch existing vendors data
-existing_data = conn.read(worksheet="Sheet1", usecols=list(range(3)), ttl=5)
-existing_data = existing_data.dropna(how="all")
-
-st.dataframe(existing_data)
 
 with st.form(key="entry_form"):
     entry_1 = st.text_input(label="Entry 1")
