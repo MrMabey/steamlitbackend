@@ -345,6 +345,11 @@ def main():
         else:
             display_lesson_plan_view(st.session_state.current_lesson)
         
+        st.title("Read Google Sheet as DataFrame")
+conn = st.connection("gsheets", type=GSheetsConnection)
+df = conn.read(worksheet="Sheet 1")
+
+st.dataframe(df)
         # Download button
         st.download_button(
             label="Download Lesson Plan",
