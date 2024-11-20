@@ -1,0 +1,13 @@
+streamlit
+google-generativeai
+Pillow
+PyPDF2
+beautifulsoup4
+lxml
+streamlit-ace
+pandas
+requests
+selenium
+webdriver-manager
+playwright
+python-dotenv
