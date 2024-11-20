@@ -11,6 +11,12 @@ from pathlib import Path
 
 import yaml
 from yaml.loader import SafeLoader
+# Page configuration
+st.set_page_config(
+    page_title="Project-Based Curriculum Builder",
+    page_icon="📝",
+    layout="wide"
+)
 
 with open('./psswrds.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
@@ -26,12 +32,7 @@ authenticator = stauth.Authenticate(
 )
 
 
-# Page configuration
-st.set_page_config(
-    page_title="Project-Based Curriculum Builder",
-    page_icon="📝",
-    layout="wide"
-)
+
 try:
     authenticator.login()
 except Exception as e:
