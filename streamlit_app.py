@@ -18,7 +18,7 @@ st.set_page_config(
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Fetch existing vendors data
-existing_data = conn.read(worksheet="Sheet 1", usecols=list(range(6)), ttl=5)
+existing_data = conn.read(worksheet="Sheet1", usecols=list(range(3)), ttl=5)
 existing_data = existing_data.dropna(how="all")
 
 st.dataframe(existing_data)
