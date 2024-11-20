@@ -26,18 +26,16 @@ authenticator = stauth.Authenticate(
 )
 
 
-try:
-    authenticator.login()
-except Exception as e:
-    st.error(e)
-
 # Page configuration
 st.set_page_config(
     page_title="Project-Based Curriculum Builder",
     page_icon="📝",
     layout="wide"
 )
-
+try:
+    authenticator.login()
+except Exception as e:
+    st.error(e)
 # Establishing a Google Sheets connection
 conn = st.connection("gsheets", type=GSheetsConnection)
 
