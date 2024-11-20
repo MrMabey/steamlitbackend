@@ -53,7 +53,35 @@ if st.session_state['authentication_status']:
 
     st.dataframe(existing_data)
 
-
+    with st.form(key="entry_form"):
+        entry_1 = st.text_input(label="Entry 1")
+        entry_2 = st.text_input(label="Entry 2")
+        test_entry = st.text_input(label="Test Entry")
+    
+    
+        submit_button = st.form_submit_button(label="Submit Details")
+    
+        # If the submit button is pressed
+        if submit_button:
+        
+                # Create a new row of vendor data
+                entry_form = pd.DataFrame(
+                    [
+                        {
+                            "Entry 1": entry_1,
+                            "Entry 2": entry_2,
+                            "Test Entry": test_entry,
+                        }
+                    ]
+                )
+    
+                # Add the new vendor data to the existing data
+                updated_df = pd.concat([existing_data, entry_form], ignore_index=True)
+    
+                # Update Google Sheets with the new vendor data
+                conn.update(worksheet="Sheet1", data=updated_df)
+    
+                st.success("Details successfully submitted!")
 
 
 elif st.session_state['authentication_status'] is False:
@@ -63,35 +91,7 @@ elif st.session_state['authentication_status'] is None:
 
 
 
-with st.form(key="entry_form"):
-    entry_1 = st.text_input(label="Entry 1")
-    entry_2 = st.text_input(label="Entry 2")
-    test_entry = st.text_input(label="Test Entry")
 
-
-    submit_button = st.form_submit_button(label="Submit Details")
-
-    # If the submit button is pressed
-    if submit_button:
-    
-            # Create a new row of vendor data
-            entry_form = pd.DataFrame(
-                [
-                    {
-                        "Entry 1": entry_1,
-                        "Entry 2": entry_2,
-                        "Test Entry": test_entry,
-                    }
-                ]
-            )
-
-            # Add the new vendor data to the existing data
-            updated_df = pd.concat([existing_data, entry_form], ignore_index=True)
-
-            # Update Google Sheets with the new vendor data
-            conn.update(worksheet="Sheet1", data=updated_df)
-
-            st.success("Details successfully submitted!")
 
 
 # Initialize Gemini client
