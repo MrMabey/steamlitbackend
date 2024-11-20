@@ -11,3 +11,4 @@ selenium
 webdriver-manager
 playwright
 st-gsheets-connection
+pickle
