@@ -12,7 +12,7 @@ from pathlib import Path
 import yaml
 from yaml.loader import SafeLoader
 
-with open('../psswrds.yaml') as file:
+with open('./psswrds.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
 # Pre-hashing all plain text passwords once
