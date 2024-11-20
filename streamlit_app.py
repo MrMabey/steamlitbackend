@@ -6,6 +6,8 @@ import json
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 import streamlit_authenticator as stauth
+import pickle
+from pathlib import Path
 
 # --- USER AUTHENTICATION ---
 names = ["Peter Parker", "Rebecca Miller"]
