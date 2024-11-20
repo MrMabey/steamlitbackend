@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 # Establishing a Google Sheets connection
-conn = st.experimental_connection("gsheets", type=GSheetsConnection)
+conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Fetch existing vendors data
 existing_data = conn.read(worksheet="Sheet 1", usecols=list(range(6)), ttl=5)
