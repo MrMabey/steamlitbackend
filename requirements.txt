@@ -10,5 +10,4 @@ requests
 selenium
 webdriver-manager
 playwright
-python-doten
 st-gsheets-connection
