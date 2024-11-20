@@ -2,6 +2,10 @@ import streamlit as st
 import google.generativeai as genai
 from datetime import datetime
 import json
+#Added for google sheets
+from streamlit_gsheets import GSheetsConnection
+import pandas as pd
+
 
 # Page configuration
 st.set_page_config(
